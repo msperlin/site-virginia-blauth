@@ -22,6 +22,8 @@ alternativas foram retiradas do projeto.
 ├── apple-touch-icon.png
 ├── robots.txt
 ├── sitemap.xml
+├── firebase.json           # Firebase Hosting (headers, cache, predeploy)
+├── scripts/build-site.sh   # monta _site/ com os arquivos públicos
 ├── nginx.conf              # configuração de produção (cache, gzip, headers)
 ├── Dockerfile              # imagem para Cloud Run ou qualquer host Docker
 └── .github/workflows/deploy-pages.yml
@@ -42,6 +44,28 @@ python3 -m http.server 8000
 ```
 
 ## Publicar
+
+### Firebase Hosting
+
+O site é publicado no Firebase Hosting. O `firebase.json` usa `_site/` como
+pasta pública e roda `scripts/build-site.sh` antes de cada deploy, então só os
+arquivos do site são enviados (o `Dockerfile`, o `nginx.conf` e o README ficam
+de fora).
+
+```bash
+npm install -g firebase-tools
+firebase login
+firebase use --add          # escolhe o projeto Firebase
+firebase deploy             # build + envio
+```
+
+Para testar localmente com o mesmo comportamento de produção (cache, headers,
+compressão):
+
+```bash
+firebase emulators:start --only hosting
+# http://localhost:5000
+```
 
 ### GitHub Pages (automático)
 
