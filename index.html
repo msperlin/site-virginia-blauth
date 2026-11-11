@@ -7,6 +7,7 @@
 <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
 <link rel="icon" href="icon-512.png" type="image/png" sizes="512x512">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <title>Virgínia Blauth · Psicóloga em Porto Alegre e online</title>
 <meta name="description" content="Psicóloga Virgínia Blauth (CRP 07/41396). Psicoterapia com base na TCC e em terapias contextuais para adolescentes e adultos, incluindo maternidade e saúde emocional. Porto Alegre e online.">
 <link rel="canonical" href="https://virginiabpsicologa.com/">
@@ -30,7 +31,8 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Psychologist",
+  "@type": ["Psychologist", "LocalBusiness"],
+  "@id": "https://virginiabpsicologa.com/#clinica",
   "name": "Virgínia Blauth",
   "alternateName": "Virgínia Blauth Psicóloga",
   "description": "Psicóloga (CRP 07/41396). Psicoterapia com base na Terapia Cognitivo-Comportamental e nas Terapias Cognitivo-Comportamentais Contextuais para adolescentes e adultos, em Porto Alegre e online.",
@@ -47,6 +49,11 @@
     "addressCountry": "BR"
   },
   "areaServed": ["Porto Alegre", "Brasil"],
+  "priceRange": "$$",
+  "currenciesAccepted": "BRL",
+  "paymentAccepted": "Pix, dinheiro, cartão",
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=Rua%20Comendador%20Rheingantz%2C%2035%2C%20Porto%20Alegre%2C%20RS",
+  "inLanguage": "pt-BR",
   "sameAs": ["https://www.instagram.com/virginiab.psicologa"],
   "knowsAbout": ["Terapia Cognitivo-Comportamental", "Terapias Cognitivo-Comportamentais Contextuais", "Ansiedade", "Fobias", "Autoestima", "Relacionamentos", "Maternidade e saúde emocional"]
 }
@@ -139,6 +146,7 @@
   --ink:#24211C;
   --muted:#6E6458;
   --terra:#B25B43;
+  --terra-ink:#A24E38;
   --terra-soft:#E9D3C9;
   --sage:#8FA98F;
   --sage-pale:#E7ECDF;
@@ -162,7 +170,7 @@ img{max-width:100%;display:block}
 a{color:inherit}
 h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.018em;line-height:1.03;margin:0}
 p{margin:0 0 1.1em}
-::selection{background:var(--terra);color:var(--paper)}
+::selection{background:var(--terra-ink);color:var(--paper)}
 :focus-visible{outline:2px solid var(--terra);outline-offset:4px;border-radius:2px}
 .skip{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--paper);padding:.8rem 1.2rem;z-index:10000}
 .skip:focus{left:1rem;top:1rem}
@@ -173,7 +181,7 @@ p{margin:0 0 1.1em}
   text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.8rem;
 }
 .eyebrow::before{content:"";width:2.2rem;height:1px;background:var(--terra)}
-.num{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;color:var(--terra);font-weight:600}
+.num{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;color:var(--terra-ink);font-weight:600}
 .lead{font-size:clamp(1.08rem,.4vw + 1rem,1.22rem);color:#3c372f}
 
 /* ---------- Buttons ---------- */
@@ -183,7 +191,7 @@ p{margin:0 0 1.1em}
   padding:.95rem 1.55rem;border-radius:999px;text-decoration:none;border:1px solid var(--ink);
   background:var(--ink);color:var(--paper);transition:transform .25s ease,background .25s ease,color .25s ease;
 }
-.btn:hover{background:var(--terra);border-color:var(--terra);transform:translateY(-2px)}
+.btn:hover{background:var(--terra-ink);border-color:var(--terra-ink);transform:translateY(-2px)}
 .btn.ghost{background:transparent;color:var(--ink)}
 .btn.ghost:hover{background:var(--ink);color:var(--paper)}
 .btn .arw{transition:transform .25s ease}
@@ -192,7 +200,7 @@ p{margin:0 0 1.1em}
   display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;font-weight:600;
   border-bottom:1px solid var(--line);padding-bottom:.2rem;transition:border-color .2s,color .2s;
 }
-.link:hover{border-color:var(--terra);color:var(--terra)}
+.link:hover{border-color:var(--terra-ink);color:var(--terra-ink)}
 
 /* ---------- Header ---------- */
 header{
@@ -295,7 +303,7 @@ section{padding-block:clamp(3.8rem,8vw,7rem);scroll-margin-top:5rem}
   border-bottom:1px solid var(--line);text-decoration:none;transition:background .3s ease,padding .3s ease;
 }
 .svc:hover{background:var(--paper-2);padding-left:clamp(.8rem,2.2vw,2rem)}
-.svc .idx{font-size:.7rem;letter-spacing:.16em;color:var(--terra);font-weight:600}
+.svc .idx{font-size:.7rem;letter-spacing:.16em;color:var(--terra-ink);font-weight:600}
 .svc h3{font-size:clamp(1.4rem,2.4vw,1.95rem);line-height:1.12}
 .svc p{margin:0;color:var(--muted);font-size:.95rem;line-height:1.6;max-width:46ch}
 .svc .arw{justify-self:end;font-size:1.2rem;color:var(--terra);transition:transform .3s}
@@ -327,8 +335,8 @@ section{padding-block:clamp(3.8rem,8vw,7rem);scroll-margin-top:5rem}
   line-height:1.34;letter-spacing:-.01em;transition:color .25s ease;
 }
 .faq-item summary::-webkit-details-marker{display:none}
-.faq-item summary:hover{color:var(--terra)}
-.faq-item[open] summary{color:var(--terra)}
+.faq-item summary:hover{color:var(--terra-ink)}
+.faq-item[open] summary{color:var(--terra-ink)}
 .pm{flex:0 0 auto;position:relative;width:15px;height:15px;margin-top:.32rem}
 .pm::before,.pm::after{
   content:"";position:absolute;left:0;top:50%;width:100%;height:1px;background:var(--terra);
@@ -343,7 +351,7 @@ section{padding-block:clamp(3.8rem,8vw,7rem);scroll-margin-top:5rem}
 .guide-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(2rem,6vw,5rem);align-items:center;
   border:1px solid var(--line);padding:clamp(1.6rem,4vw,3.4rem);border-radius:6px;background:linear-gradient(135deg,#FBF6EC, #F4EBDD)}
 .cover{
-  position:relative;aspect-ratio:3/4;max-width:280px;background:var(--terra);color:var(--paper);
+  position:relative;aspect-ratio:3/4;max-width:280px;background:var(--terra-ink);color:var(--paper);
   border-radius:3px;padding:1.6rem;display:flex;flex-direction:column;justify-content:space-between;
   box-shadow:14px 18px 0 -8px #E7DCCB,0 30px 50px -30px rgba(0,0,0,.5);transform:rotate(-2.5deg);
 }
@@ -364,7 +372,7 @@ section{padding-block:clamp(3.8rem,8vw,7rem);scroll-margin-top:5rem}
 .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,6vw,6rem);margin-top:clamp(2rem,5vw,3.5rem)}
 .contact p{color:#C9C0B1;max-width:46ch}
 .contact .btn{background:var(--paper);color:var(--ink);border-color:var(--paper)}
-.contact .btn:hover{background:var(--terra);border-color:var(--terra);color:var(--paper)}
+.contact .btn:hover{background:var(--terra-ink);border-color:var(--terra-ink);color:var(--paper)}
 .contact .btn.ghost{background:transparent;color:var(--paper);border-color:rgba(248,242,231,.35)}
 .contact .btn.ghost:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
 .contact-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
@@ -380,7 +388,7 @@ section{padding-block:clamp(3.8rem,8vw,7rem);scroll-margin-top:5rem}
 footer{background:var(--ink);color:#B9AF9F;padding-block:2.4rem}
 .foot{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:2rem;align-items:start}
 .foot .brand{font-family:var(--serif);font-size:1.4rem;color:var(--paper);line-height:1.2}
-.foot .brand span{display:block;font-family:var(--sans);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:#8F8474;margin-top:.5rem}
+.foot .brand span{display:block;font-family:var(--sans);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:#A29684;margin-top:.5rem}
 .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:.45rem;font-size:.86rem}
 .foot a{text-decoration:none}
 .foot a:hover{color:var(--paper)}
@@ -388,7 +396,7 @@ footer{background:var(--ink);color:#B9AF9F;padding-block:2.4rem}
 .foot .legal strong{display:block;color:#D7CCBB;font-weight:600;margin-bottom:.3rem}
 
 /* Reveal */
-.m-cta{display:none}
+.m-cta,.m-bar{display:none}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
 .reveal.in{opacity:1;transform:none}
 
@@ -413,7 +421,7 @@ footer{background:var(--ink);color:#B9AF9F;padding-block:2.4rem}
 }
 @media (max-width:760px){
   .m-cta{display:block}
-  .m-cta a{color:var(--terra)}
+  .m-cta a{color:var(--terra-ink)}
   header{backdrop-filter:none;background:var(--paper)}
   .menu{
     position:fixed;inset:0 0 0 auto;width:min(86vw,340px);background:var(--paper);
@@ -424,6 +432,22 @@ footer{background:var(--ink);color:#B9AF9F;padding-block:2.4rem}
   .menu.open{transform:none}
   .menu a{font-family:var(--serif);font-size:1.5rem}
   .nav-cta{display:none}
+  .m-bar{
+    display:flex;position:fixed;left:0;right:0;bottom:0;z-index:65;align-items:center;justify-content:space-between;gap:.9rem;
+    padding:.62rem clamp(1.25rem,5vw,2rem) calc(.62rem + env(safe-area-inset-bottom));
+    background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);
+    transform:translateY(110%);transition:transform .35s cubic-bezier(.22,1,.36,1);
+  }
+  .m-bar.show{transform:none}
+  body.nav-open .m-bar{transform:translateY(110%)}
+  .m-bar span{font-size:.78rem;line-height:1.35;color:var(--muted)}
+  .m-bar a{
+    flex:0 0 auto;display:inline-flex;align-items:center;gap:.4rem;text-decoration:none;font-weight:600;font-size:.84rem;
+    background:var(--ink);color:var(--paper);border-radius:999px;padding:.6rem 1rem;
+  }
+  .m-bar a:hover{background:var(--terra-ink)}
+  footer{padding-bottom:6.6rem}
   .burger{display:block;z-index:80}
   .hero h1{margin-top:.7rem}
   .eyebrow{white-space:nowrap;font-size:.66rem;letter-spacing:.14em}
@@ -469,10 +493,10 @@ footer{background:var(--ink);color:#B9AF9F;padding-block:2.4rem}
         <li><a href="#primeira-sessao">Primeira sessão</a></li>
         <li><a href="#duvidas">Dúvidas</a></li>
         <li><a href="#contato">Contato</a></li>
-        <li class="m-cta"><a href="https://wa.me/5551998555131" target="_blank" rel="noopener">Agendar consulta <span aria-hidden="true">↗</span></a></li>
+        <li class="m-cta"><a href="https://wa.me/5551998555131?text=Ol%C3%A1%2C%20Virg%C3%ADnia%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20a%20conversa%20inicial%20gratuita%20de%2020%20minutos." target="_blank" rel="noopener">Agendar consulta <span aria-hidden="true">↗</span></a></li>
       </ul>
     </nav>
-    <a class="nav-cta" href="https://wa.me/5551998555131" target="_blank" rel="noopener">Agendar consulta <span aria-hidden="true">↗</span></a>
+    <a class="nav-cta" href="https://wa.me/5551998555131?text=Ol%C3%A1%2C%20Virg%C3%ADnia%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20a%20conversa%20inicial%20gratuita%20de%2020%20minutos." target="_blank" rel="noopener">Agendar consulta <span aria-hidden="true">↗</span></a>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
       <span></span><span></span><span></span>
     </button>
@@ -487,7 +511,7 @@ footer{background:var(--ink);color:#B9AF9F;padding-block:2.4rem}
         <h1>Cuidar da mente para viver em <em>equilíbrio.</em></h1>
         <p class="lead">Acompanho adolescentes e adultos que enfrentam ansiedade, fobias e dificuldades emocionais — em um espaço de escuta, acolhimento e desenvolvimento.</p>
         <div class="hero-actions">
-          <a class="btn" href="https://wa.me/5551998555131" target="_blank" rel="noopener">Agendar primeira sessão <span class="arw" aria-hidden="true">→</span></a>
+          <a class="btn" href="https://wa.me/5551998555131?text=Ol%C3%A1%2C%20Virg%C3%ADnia%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20a%20conversa%20inicial%20gratuita%20de%2020%20minutos." target="_blank" rel="noopener">Agendar conversa gratuita <span class="arw" aria-hidden="true">→</span></a>
           <a class="link" href="#sobre">Conhecer meu trabalho</a>
         </div>
         <div class="hero-note">
@@ -566,31 +590,31 @@ footer{background:var(--ink);color:#B9AF9F;padding-block:2.4rem}
         <p class="reveal">O processo terapêutico é construído de forma individualizada, respeitando seu momento, suas necessidades e seus objetivos.</p>
       </div>
       <div class="svc-list">
-        <a class="svc reveal" href="https://wa.me/5551998555131" target="_blank" rel="noopener">
+        <a class="svc reveal" href="https://wa.me/5551998555131?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20tenho%20interesse%20em%20atendimento%20sobre%20ansiedade%20e%20preocupa%C3%A7%C3%B5es." target="_blank" rel="noopener">
           <span class="idx">01</span>
           <h3>Ansiedade e preocupações</h3>
           <p>Aprender a lidar com pensamentos excessivos, antecipações negativas e dificuldades de relaxar.</p>
           <span class="arw" aria-hidden="true">↗</span>
         </a>
-        <a class="svc reveal" href="https://wa.me/5551998555131" target="_blank" rel="noopener">
+        <a class="svc reveal" href="https://wa.me/5551998555131?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20tenho%20interesse%20em%20atendimento%20sobre%20autoconhecimento%20e%20autoestima." target="_blank" rel="noopener">
           <span class="idx">02</span>
           <h3>Autoconhecimento e autoestima</h3>
           <p>Compreender padrões de comportamento, desenvolver autoconfiança e construir uma relação mais saudável consigo.</p>
           <span class="arw" aria-hidden="true">↗</span>
         </a>
-        <a class="svc reveal" href="https://wa.me/5551998555131" target="_blank" rel="noopener">
+        <a class="svc reveal" href="https://wa.me/5551998555131?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20tenho%20interesse%20em%20atendimento%20sobre%20relacionamentos%20e%20limites." target="_blank" rel="noopener">
           <span class="idx">03</span>
           <h3>Relacionamentos e limites</h3>
           <p>Desenvolver habilidades para lidar com conflitos, estabelecer limites e construir relações mais saudáveis.</p>
           <span class="arw" aria-hidden="true">↗</span>
         </a>
-        <a class="svc reveal" href="https://wa.me/5551998555131" target="_blank" rel="noopener">
+        <a class="svc reveal" href="https://wa.me/5551998555131?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20tenho%20interesse%20em%20atendimento%20sobre%20autocobran%C3%A7a%20e%20sobrecarga%20emocional." target="_blank" rel="noopener">
           <span class="idx">04</span>
           <h3>Autocrítica e sobrecarga emocional</h3>
           <p>Reconhecer padrões de autocobrança, compreender emoções e desenvolver estratégias de enfrentamento.</p>
           <span class="arw" aria-hidden="true">↗</span>
         </a>
-        <a class="svc reveal" href="https://wa.me/5551998555131" target="_blank" rel="noopener">
+        <a class="svc reveal" href="https://wa.me/5551998555131?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20tenho%20interesse%20em%20atendimento%20sobre%20maternidade%20e%20sa%C3%BAde%20emocional." target="_blank" rel="noopener">
           <span class="idx">05</span>
           <h3>Maternidade e saúde emocional</h3>
           <p>Compreender as mudanças emocionais da gestação, lidar com expectativas e inseguranças, acolher a culpa materna e desenvolver estratégias para enfrentar os desafios do puerpério e da maternidade.</p>
@@ -626,7 +650,7 @@ footer{background:var(--ink);color:#B9AF9F;padding-block:2.4rem}
         <p class="eyebrow">05 — Dúvidas frequentes</p>
         <h2>Perguntas <em>frequentes.</em></h2>
         <p>Se a sua dúvida não estiver aqui, é só me chamar no WhatsApp — respondo com prazer.</p>
-        <p style="margin-top:1.2rem"><a class="link" href="https://wa.me/5551998555131" target="_blank" rel="noopener">Falar no WhatsApp <span aria-hidden="true">↗</span></a></p>
+        <p style="margin-top:1.2rem"><a class="link" href="https://wa.me/5551998555131?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20tenho%20uma%20d%C3%BAvida%20sobre%20o%20atendimento." target="_blank" rel="noopener">Falar no WhatsApp <span aria-hidden="true">↗</span></a></p>
       </div>
       <div class="faq-list reveal">
         <details class="faq-item">
@@ -692,7 +716,7 @@ footer{background:var(--ink);color:#B9AF9F;padding-block:2.4rem}
           <h2>Dê o primeiro passo. Vamos <em>conversar.</em></h2>
           <p>Entre em contato para agendar um horário e conversar sobre como a terapia pode ajudar você. Atendimento online e presencial em Porto Alegre, no bairro Auxiliadora.</p>
           <div class="contact-actions">
-            <a class="btn" href="https://wa.me/5551998555131" target="_blank" rel="noopener">WhatsApp <span class="arw" aria-hidden="true">↗</span></a>
+            <a class="btn" href="https://wa.me/5551998555131?text=Ol%C3%A1%2C%20Virg%C3%ADnia%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20a%20conversa%20inicial%20gratuita%20de%2020%20minutos." target="_blank" rel="noopener">WhatsApp <span class="arw" aria-hidden="true">↗</span></a>
             <a class="btn ghost" href="mailto:virginiab.psicologa@gmail.com">Enviar e-mail</a>
           </div>
           <p class="hours">Sessões de 50 minutos · Semanais · Online e presencial</p>
@@ -710,6 +734,11 @@ footer{background:var(--ink);color:#B9AF9F;padding-block:2.4rem}
     </div>
   </section>
 </main>
+
+<aside class="m-bar" aria-label="Agendar pelo WhatsApp">
+  <span>Conversa inicial gratuita · 20 min</span>
+  <a href="https://wa.me/5551998555131?text=Ol%C3%A1%2C%20Virg%C3%ADnia%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20a%20conversa%20inicial%20gratuita%20de%2020%20minutos." target="_blank" rel="noopener" aria-label="Agendar conversa gratuita pelo WhatsApp">WhatsApp <span aria-hidden="true">↗</span></a>
+</aside>
 
 <footer>
   <div class="wrap foot">
@@ -735,27 +764,39 @@ footer{background:var(--ink);color:#B9AF9F;padding-block:2.4rem}
   var header=document.getElementById('topo');
   var burger=document.getElementById('burger');
   var menu=document.getElementById('menu');
-  function onScroll(){header.classList.toggle('scrolled',window.scrollY>10)}
+  var bar=document.querySelector('.m-bar');
+  function onScroll(){
+    header.classList.toggle('scrolled',window.scrollY>10);
+    if(bar)bar.classList.toggle('show',window.scrollY>window.innerHeight*.6);
+  }
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 
-  burger.addEventListener('click',function(){
-    var open=menu.classList.toggle('open');
-    burger.setAttribute('aria-expanded',open);
+  var outside=document.querySelectorAll('main, footer, .nav > .logo, .nav > .nav-cta');
+  function setMenu(open,restoreFocus){
+    if(open===menu.classList.contains('open'))return;
+    menu.classList.toggle('open',open);
+    document.body.classList.toggle('nav-open',open);
+    burger.setAttribute('aria-expanded',String(open));
     burger.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');
     document.body.style.overflow=open?'hidden':'';
-  });
-  menu.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click',function(){
-      menu.classList.remove('open');burger.setAttribute('aria-expanded','false');
-      document.body.style.overflow='';
+    outside.forEach(function(el){
+      if(open){el.setAttribute('inert','')}else{el.removeAttribute('inert')}
     });
+    if(open){
+      var first=menu.querySelector('a');
+      if(first)first.focus();
+    }else if(restoreFocus){
+      burger.focus();
+    }
+  }
+  burger.addEventListener('click',function(){setMenu(!menu.classList.contains('open'),false)});
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){setMenu(false,false)});
   });
   document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'&&menu.classList.contains('open')){
-      menu.classList.remove('open');burger.setAttribute('aria-expanded','false');
-      document.body.style.overflow='';burger.focus();
-    }
+    if(e.key==='Escape'&&menu.classList.contains('open'))setMenu(false,true);
   });
+
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var items=document.querySelectorAll('.reveal');
   if(reduce||!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in')});}

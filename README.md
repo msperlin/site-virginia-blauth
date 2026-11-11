@@ -12,6 +12,8 @@ alternativas foram retiradas do projeto.
 ```
 .
 ├── index.html              # página completa (HTML + CSS + JS inline)
+├── 404.html                # página de erro (Firebase e nginx a servem automaticamente)
+├── site.webmanifest        # nome, cores e ícones para "adicionar à tela inicial"
 ├── assets/
 │   ├── fonts/              # Fraunces 400/600/400 itálico e Karla 400/600 (WOFF2)
 │   └── img/
@@ -101,8 +103,69 @@ gcloud run deploy vblast-site \
 
 ### Qualquer hospedagem estática
 
-Envie `index.html`, `assets/`, `favicon.ico`, `icon-192.png`, `icon-512.png`,
-`apple-touch-icon.png`, `robots.txt` e `sitemap.xml` para a raiz do host.
+Envie `index.html`, `404.html`, `site.webmanifest`, `assets/`, `favicon.ico`,
+`icon-192.png`, `icon-512.png`, `apple-touch-icon.png`, `robots.txt` e
+`sitemap.xml` para a raiz do host.
+
+## Ver acessos (Cloud Logging)
+
+O site não tem JavaScript de analytics e nada é gravado no navegador do
+visitante. Para ver quem acessa, use os **logs de requisição do próprio Firebase
+Hosting**, exportados para o Cloud Logging. Não exige código, nem banner de
+cookies, e não muda o peso da página.
+
+### Ligar a exportação (uma vez)
+
+1. Abra <https://console.firebase.google.com/project/virginia-blauth-site/settings/integrations/cloudlogging>.
+2. Em **Configurações do projeto → Integrações**, no cartão **Cloud Logging**,
+   clique em **Vincular**.
+3. Marque **somente** o site `virginia-blauth-site` e conclua.
+
+É preciso uma conta com papel **Owner**, **Editor** ou **Firebase Develop
+Admin** no projeto — a service account de deploy
+(`github-deploy@virginia-blauth-site.iam.gserviceaccount.com`) não serve.
+
+As requisições **novas** aparecem em até ~30 minutos; não há histórico
+retroativo. A retenção padrão é de 30 dias e a franquia gratuita é de 50 GB/mês
+— este site usa uma fração mínima disso.
+
+### Consultar
+
+Abra <https://console.cloud.google.com/logs/query?project=virginia-blauth-site>
+e use:
+
+```
+resource.type="firebase_domain"
+logName="projects/virginia-blauth-site/logs/webrequests"
+```
+
+Ajustes úteis:
+
+| Pergunta | Como fazer |
+|---|---|
+| Quais páginas são acessadas | agrupar por `httpRequest.requestUrl` |
+| De qual cidade/país vem | agrupar por `jsonPayload.remoteIpCity` e `jsonPayload.remoteIpCountry` |
+| Como a pessoa chegou | olhar `httpRequest.referer` (Instagram, Google, WhatsApp, direto) |
+| Pessoas x robôs | `httpRequest.userAgent=~"Mozilla"` para manter navegadores; filtrar `Googlebot\|bingbot\|facebookexternalhit` para remover robôs |
+| Links quebrados | `httpRequest.status=404` |
+| Domínio próprio x `.web.app` | agrupar por `jsonPayload.hostname` |
+
+Campos disponíveis em cada requisição: `remoteIp`, `referer`, `userAgent`,
+`requestUrl`, `status`, `latency`, `cacheHit`, `remoteIpCountry` e
+`remoteIpCity`.
+
+### Observações
+
+- A aba **Hosting** do console do Firebase mostra armazenamento e transferência,
+  não visitantes.
+- O painel **Uso** do Cloud Logging (e o `log_bytes` no Logs Explorer) serve para
+  acompanhar o volume de dados dos logs.
+- `remoteIp` e cidade são dados pessoais pela LGPD: mantenha a retenção padrão de
+  30 dias e não compartilhe os logs. Como nada é gravado no dispositivo do
+  visitante, não é necessário banner de consentimento.
+- Para histórico maior que 30 dias, exporte os logs para o BigQuery (exige
+  plano Blaze) ou use uma ferramenta de analytics sem cookies, como Plausible,
+  Umami ou Cloudflare Web Analytics.
 
 ## Domínio próprio
 
@@ -124,6 +187,20 @@ Se o domínio final for outro, substitua as ocorrências de
 `https://virginiabpsicologa.com/` em `index.html`, `robots.txt` e
 `sitemap.xml`.
 
+## SEO e presença local
+
+- **Google Business Profile** (perfil da empresa no Google) é o que coloca o
+  consultório no mapa para buscas como "psicóloga perto de mim". Use o mesmo
+  nome, endereço e telefone do site; o `schema.org` já publica esses dados.
+- **Google Search Console**: cadastre `https://virginiabpsicologa.com/` e envie
+  `sitemap.xml`. Não usa cookies, então não muda nada no aviso de privacidade.
+- **Dados pendentes no schema.org** (`index.html`, bloco `Psychologist`):
+  `openingHoursSpecification` e `geo` (latitude/longitude do consultório).
+  Sem essas informações o `LocalBusiness` continua válido, apenas menos completo.
+- **FAQ no Google**: desde 2023 os resultados enriquecidos de FAQ aparecem
+  sobretudo em sites de governo e saúde. O bloco `FAQPage` segue válido e útil
+  para outros buscadores, mas não espere ver as perguntas expandidas no SERP.
+
 ## Antes de publicar — conferir
 
 - [ ] WhatsApp: `https://wa.me/5551998555131` e telefone `(51) 99855-5131`.
@@ -134,6 +211,8 @@ Se o domínio final for outro, substitua as ocorrências de
 - [ ] Para pré-preencher a mensagem do WhatsApp, use
       `https://wa.me/5551998555131?text=Ol%C3%A1%2C%20Virg%C3%ADnia!%20Gostaria%20de%20agendar%20uma%20consulta.`
 - [ ] Aviso de emergência (CVV 188) no rodapé — já incluído.
+- [ ] Cloud Logging vinculado ao site `virginia-blauth-site` (ver
+      [Ver acessos (Cloud Logging)](#ver-acessos-cloud-logging)).
 
 ## Conteúdo e manutenção
 
@@ -145,9 +224,23 @@ Se o domínio final for outro, substitua as ocorrências de
   JavaScript e é navegável por teclado. Ao alterar perguntas ou respostas,
   atualize também o bloco JSON-LD `FAQPage` no `<head>` (usado pelo Google).
 - O site não tem formulário nem backend: o contato é por WhatsApp, telefone e
-  e-mail.
-- Se adicionar analytics, prefira soluções sem cookies (Plausible, Umami ou
-  Cloudflare Web Analytics) e atualize o aviso de privacidade (LGPD).
+  e-mail. O botão principal do topo abre a **conversa inicial gratuita de 20
+  minutos**; no celular, uma barra fixa repete essa ação depois que o topo sai
+  da tela (`.m-bar`).
+- **Links do WhatsApp**: cada seção usa `?text=` com uma mensagem
+  pré-preenchida, então a origem do contato já aparece na primeira mensagem. Ao
+  criar uma seção nova, siga o mesmo padrão (codifique o texto com
+  <https://www.urlencoder.org>).
+- **Cache de imagens**: imagens e ícones ficam uma semana em cache porque o nome
+  é fixo — ao trocar uma foto, **renomeie o arquivo** (`hero-2.jpg`) para não
+  servir a antiga. As fontes são `immutable` por um ano: se mudarem, renomeie
+  também.
+- **Página 404**: `404.html` usa caminhos absolutos (`/assets/...`) porque o
+  Firebase a serve em qualquer profundidade de URL.
+- O acompanhamento de acessos é feito pelos logs do Firebase Hosting no Cloud
+  Logging (ver [Ver acessos](#ver-acessos-cloud-logging)); não há script de
+  analytics na página. Se adicionar um, prefira soluções sem cookies (Plausible,
+  Umami ou Cloudflare Web Analytics) e atualize o aviso de privacidade (LGPD).
 
 ## Licenças
 
