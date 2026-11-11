@@ -24,9 +24,9 @@ alternativas foram retiradas do projeto.
 ├── sitemap.xml
 ├── firebase.json           # Firebase Hosting (headers, cache, predeploy)
 ├── scripts/build-site.sh   # monta _site/ com os arquivos públicos
-├── nginx.conf              # configuração de produção (cache, gzip, headers)
+├── nginx.conf              # headers e cache equivalentes (alternativa em Docker)
 ├── Dockerfile              # imagem para Cloud Run ou qualquer host Docker
-└── .github/workflows/deploy-pages.yml
+└── .github/workflows/deploy-firebase.yml   # deploy automático na branch main
 ```
 
 As fontes e fotos antes estavam embutidas em base64 dentro do HTML. Foram
@@ -67,13 +67,26 @@ firebase emulators:start --only hosting
 # http://localhost:5000
 ```
 
-### GitHub Pages (automático)
+#### Deploy automático
 
-O workflow `.github/workflows/deploy-pages.yml` publica o site a cada push na
-branch `main`. Basta habilitar em **Settings → Pages → Source: GitHub Actions**.
-O endereço padrão será `https://USUARIO.github.io/NOME-DO-REPOSITORIO/`.
+O workflow `.github/workflows/deploy-firebase.yml` publica no canal `live` a
+cada push na branch `main`. Ele usa a service account
+`github-deploy@virginia-blauth-site.iam.gserviceaccount.com` (papéis
+`firebasehosting.admin` e `serviceusage.serviceUsageConsumer`), cuja chave JSON
+fica no secret `FIREBASE_SERVICE_ACCOUNT_VIRGINIA_BLAUTH_SITE`.
 
-### Google Cloud Run
+Para publicar manualmente sem CI, use `firebase deploy` conforme acima.
+
+#### Desfazer um deploy
+
+```bash
+firebase hosting:rollback --project virginia-blauth-site
+```
+
+### Alternativa: Google Cloud Run
+
+O `Dockerfile` e o `nginx.conf` continuam no repositório apenas como
+alternativa (mesma política de cache e headers). Para usar:
 
 ```bash
 gcloud run deploy vblast-site \
@@ -90,18 +103,22 @@ Envie `index.html`, `assets/`, `favicon.svg`, `apple-touch-icon.png`,
 ## Domínio próprio
 
 O `canonical`, as tags Open Graph, o `robots.txt` e o `sitemap.xml` apontam para
-**https://virginiabpsicologa.com/**. Se o domínio final for outro:
+**https://virginiabpsicologa.com/**, que é servido pelo Firebase Hosting:
 
-1. Substitua as ocorrências de `https://virginiabpsicologa.com/` em
-   `index.html`, `robots.txt` e `sitemap.xml`.
-2. No GitHub Pages, adicione o domínio em **Settings → Pages → Custom domain**
-   (isso cria o arquivo `CNAME`) e configure o DNS:
-   - apex (`@`): registros `A` para `185.199.108.153`, `185.199.109.153`,
-     `185.199.110.153` e `185.199.111.153`;
-   - `www`: `CNAME` para `USUARIO.github.io`.
-3. Ative **Enforce HTTPS**.
-4. Migre o domínio com TTL baixo e mantenha o site antigo no ar por alguns dias
-   até validar o novo.
+1. No console do Firebase, em **Hosting → Adicionar domínio personalizado**,
+   informe `virginiabpsicologa.com`.
+2. Crie no provedor de DNS o registro `TXT` de verificação exibido pelo Firebase.
+3. Crie os registros `A` com os IPs informados pelo Firebase. Para `www`, use um
+   `CNAME` para `virginia-blauth-site.web.app` ou adicione `www` como domínio
+   secundário redirecionando para o apex.
+4. Se o DNS estiver na Cloudflare, mantenha os registros em **DNS only**
+   (nuvem cinza) até o certificado aparecer como **Conectado**.
+5. O certificado TLS é emitido automaticamente; a propagação leva de minutos a
+   24 horas.
+
+Se o domínio final for outro, substitua as ocorrências de
+`https://virginiabpsicologa.com/` em `index.html`, `robots.txt` e
+`sitemap.xml`.
 
 ## Antes de publicar — conferir
 
