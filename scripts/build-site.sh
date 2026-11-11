@@ -7,5 +7,5 @@ cd "$(dirname "$0")/.."
 
 rm -rf _site
 mkdir -p _site
-cp index.html favicon.svg apple-touch-icon.png robots.txt sitemap.xml _site/
+cp index.html favicon.ico icon-192.png icon-512.png apple-touch-icon.png robots.txt sitemap.xml _site/
 cp -r assets _site/assets

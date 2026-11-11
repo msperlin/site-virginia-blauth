@@ -99,6 +99,13 @@ obtidos do site público atual. São usados neste site com autorização da
 titular. O cartão `assets/img/og.jpg` é uma composição feita a partir do
 retrato para compartilhamento em redes sociais.
 
+## Marca
+
+Os arquivos `assets/img/marca-horizontal.png`, `assets/img/marca-simbolo.png`,
+`favicon.ico`, `icon-192.png`, `icon-512.png` e `apple-touch-icon.png` derivam da
+marca original de **Virgínia Blauth** (versão terracota/verde) e pertencem à
+titular. Foram recortados, redimensionados e otimizados para uso na web.
+
 ## Código
 
 O HTML/CSS/JavaScript deste repositório foi escrito para este projeto e pode ser

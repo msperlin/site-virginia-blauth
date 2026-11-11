@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="icon-512.png" type="image/png" sizes="512x512">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Virgínia Blauth · Psicóloga em Porto Alegre e online</title>
 <meta name="description" content="Psicóloga Virgínia Blauth (CRP 07/41396). Psicoterapia com base na TCC e em terapias contextuais para adolescentes e adultos, incluindo maternidade e saúde emocional. Porto Alegre e online.">
@@ -34,6 +36,7 @@
   "description": "Psicóloga (CRP 07/41396). Psicoterapia com base na Terapia Cognitivo-Comportamental e nas Terapias Cognitivo-Comportamentais Contextuais para adolescentes e adultos, em Porto Alegre e online.",
   "url": "https://virginiabpsicologa.com/",
   "image": "https://virginiabpsicologa.com/assets/img/hero.jpg",
+  "logo": "https://virginiabpsicologa.com/icon-512.png",
   "telephone": "+55-51-99855-5131",
   "email": "virginiab.psicologa@gmail.com",
   "address": {
@@ -198,9 +201,8 @@ header{
 }
 header.scrolled{border-color:var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding-block:1.05rem}
-.logo{text-decoration:none;display:flex;flex-direction:column;line-height:1}
-.logo b{font-family:var(--serif);font-weight:400;font-size:1.42rem;letter-spacing:-.01em}
-.logo span{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:.45rem}
+.logo{text-decoration:none;display:block;line-height:0}
+.logo img{display:block;width:auto;height:clamp(42px,4vw,48px)}
 .menu{display:flex;align-items:center;gap:clamp(1rem,2.4vw,2.3rem);list-style:none;margin:0;padding:0}
 .menu a{font-size:.86rem;text-decoration:none;letter-spacing:.02em;position:relative;padding-block:.3rem}
 .menu a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--terra);transition:width .3s}
@@ -312,7 +314,7 @@ section{padding-block:clamp(3.8rem,8vw,7rem);scroll-margin-top:5rem}
 .first-body .soft{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2vw,1.5rem);color:var(--ink);max-width:34ch;margin-top:1.6rem}
 
 /* FAQ */
-.faq{background:var(--paper-2);border-block:1px solid var(--line)}
+.faq{background:var(--paper-2);border-bottom:1px solid var(--line)}
 .faq-grid{display:grid;grid-template-columns:.78fr 1.3fr;gap:clamp(2rem,6vw,5rem);align-items:start}
 .faq-intro h2{font-size:clamp(2.1rem,4vw,3.4rem);max-width:14ch}
 .faq-intro h2 em{font-style:italic;color:var(--terra)}
@@ -457,8 +459,7 @@ footer{background:var(--ink);color:#B9AF9F;padding-block:2.4rem}
 <header id="topo">
   <div class="wrap nav">
     <a class="logo" href="#topo" aria-label="Virgínia Blauth, psicóloga — início">
-      <b>Virgínia Blauth</b>
-      <span>Psicóloga · CRP 07/41396</span>
+      <img src="assets/img/marca-horizontal.png" alt="" width="1000" height="247" fetchpriority="high">
     </a>
     <nav aria-label="Navegação principal">
       <ul class="menu" id="menu">
@@ -538,7 +539,7 @@ footer{background:var(--ink);color:#B9AF9F;padding-block:2.4rem}
         </div>
         <div class="appr-body reveal">
           <p>Meu trabalho é fundamentado na <strong>Terapia Cognitivo-Comportamental (TCC)</strong>, uma abordagem com ampla evidência científica para o tratamento de diferentes questões emocionais, especialmente os transtornos de ansiedade.</p>
-          <p>Também integro contribuições das <strong>Terapias Comportamentais Contextuais</strong>, que propõem uma maneira diferente de se relacionar com pensamentos e emoções: em vez de tentar controlar, evitar ou eliminar tudo aquilo que causa desconforto, buscamos desenvolver uma relação mais flexível e acolhedora com nossas experiências internas, construindo uma vida orientada pelo que realmente importa.</p>
+          <p>Também integro contribuições das <strong>Terapias Cognitivo-Comportamentais Contextuais</strong>, que propõem uma maneira diferente de se relacionar com pensamentos e emoções: em vez de tentar controlar, evitar ou eliminar tudo aquilo que causa desconforto, buscamos desenvolver uma relação mais flexível e acolhedora com nossas experiências internas, construindo uma vida orientada pelo que realmente importa.</p>
           <ul class="appr-list">
             <li>
               <strong>Terapia Cognitivo-Comportamental (TCC)</strong>

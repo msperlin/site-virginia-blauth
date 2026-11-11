@@ -17,9 +17,13 @@ alternativas foram retiradas do projeto.
 │   └── img/
 │       ├── hero.jpg        # retrato principal
 │       ├── consultorio.jpg # foto do consultório
-│       └── og.jpg          # cartão 1200×630 para compartilhamento
-├── favicon.svg
-├── apple-touch-icon.png
+│       ├── og.jpg          # cartão 1200×630 para compartilhamento
+│       ├── marca-horizontal.png  # marca (símbolo + nome + Psicóloga)
+│       └── marca-simbolo.png     # símbolo isolado, sem texto
+├── favicon.ico             # ícone 16/32/48 (fundo creme + símbolo)
+├── icon-192.png            # ícone para Android/manifest
+├── icon-512.png            # ícone grande (também usado no schema.org)
+├── apple-touch-icon.png    # ícone 180×180 para iOS
 ├── robots.txt
 ├── sitemap.xml
 ├── firebase.json           # Firebase Hosting (headers, cache, predeploy)
@@ -97,8 +101,8 @@ gcloud run deploy vblast-site \
 
 ### Qualquer hospedagem estática
 
-Envie `index.html`, `assets/`, `favicon.svg`, `apple-touch-icon.png`,
-`robots.txt` e `sitemap.xml` para a raiz do host.
+Envie `index.html`, `assets/`, `favicon.ico`, `icon-192.png`, `icon-512.png`,
+`apple-touch-icon.png`, `robots.txt` e `sitemap.xml` para a raiz do host.
 
 ## Domínio próprio
 
@@ -122,8 +126,7 @@ Se o domínio final for outro, substitua as ocorrências de
 
 ## Antes de publicar — conferir
 
-- [ ] WhatsApp: `https://wa.me/5551998555131` (8 ocorrências) e telefone
-      `(51) 99855-5131`.
+- [ ] WhatsApp: `https://wa.me/5551998555131` e telefone `(51) 99855-5131`.
 - [ ] E-mail: `virginiab.psicologa@gmail.com`.
 - [ ] Endereço: Rua Comendador Rheingantz, 35 — Auxiliadora, Porto Alegre/RS.
 - [ ] Instagram: `@virginiab.psicologa`.
@@ -138,6 +141,9 @@ Se o domínio final for outro, substitua as ocorrências de
   `index.html` (`--paper`, `--ink`, `--terra`, `--sage`, `--serif`, `--sans`).
 - O menu mobile, o scroll suave e as animações de entrada usam JavaScript
   inline; há fallback via `<noscript>`.
+- A seção **Dúvidas frequentes** usa `<details>`/`<summary>` nativos: abre sem
+  JavaScript e é navegável por teclado. Ao alterar perguntas ou respostas,
+  atualize também o bloco JSON-LD `FAQPage` no `<head>` (usado pelo Google).
 - O site não tem formulário nem backend: o contato é por WhatsApp, telefone e
   e-mail.
 - Se adicionar analytics, prefira soluções sem cookies (Plausible, Umami ou
